@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+#getJokeBtn{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+#jokeSetup{
+    font-size: 2rem;
+    width: 90%;
+    font-weight: bold;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+#jokePunchline{
+    color: red;
+    display: none;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+
+}
+
+#getPunchLineBtn{
+    display: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+}
