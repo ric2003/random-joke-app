@@ -8,6 +8,10 @@ function getJoke() {
       document.getElementById("getJokeBtn").style.display = "none";
       document.getElementById("getPunchLineBtn").onclick = () =>
         getPunchline(data.punchline);
+    })
+    .then(() => {
+      clearBackground();
+      addSVGsToBg(50, "question-mark.svg");
     });
 }
 
@@ -16,17 +20,20 @@ function getPunchline(punchline) {
   document.getElementById("jokePunchline").style.display = "block";
   document.getElementById("getPunchLineBtn").style.display = "none";
   document.getElementById("getJokeBtn").style.display = "block";
+  document.getElementById("getJokeBtn").innerHTML = "Give me another joke";
+  clearBackground();
+  addSVGsToBg(30, "laugh.svg");
 }
 function randomSizeForQuestionMark() {
   console.log(Math.random());
   return Math.floor(Math.random() * 150) + 50;
 }
-function addQuestionMarksToBg(amount) {
+function addSVGsToBg(amount, svgName) {
   const questionMarks = [];
 
   for (let i = 0; i < amount; i++) {
     const img = document.createElement("img");
-    img.src = "question-mark.svg";
+    img.src = svgName;
     img.alt = "Question mark";
     const size = randomSizeForQuestionMark();
     img.style.width = size + "px";
@@ -58,7 +65,6 @@ function findPositionWithSpacing(existingMarks, size) {
     const x = Math.random() * 100;
     const y = Math.random() * 100;
 
-    // Check if this position has enough spacing from existing question marks
     let hasEnoughSpacing = true;
     for (let mark of existingMarks) {
       const distance = Math.sqrt(
@@ -91,4 +97,4 @@ function clearBackground() {
   questionMarks.forEach((img) => img.remove());
 }
 
-addQuestionMarksToBg(100);
+addSVGsToBg(20, "hello.svg");
