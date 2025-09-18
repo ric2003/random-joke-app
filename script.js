@@ -18,9 +18,12 @@ function getPunchline(punchline) {
   document.getElementById("getJokeBtn").style.display = "block";
 }
 function randomSizeForQuestionMark() {
-  return Math.floor(Math.random() * 100) + 100;
+  console.log(Math.random());
+  return Math.floor(Math.random() * 150) + 50;
 }
 function addQuestionMarksToBg(amount) {
+  const questionMarks = [];
+
   for (let i = 0; i < amount; i++) {
     const img = document.createElement("img");
     img.src = "question-mark.svg";
@@ -29,13 +32,63 @@ function addQuestionMarksToBg(amount) {
     img.style.width = size + "px";
     img.style.height = size + "px";
     img.style.position = "absolute";
-    img.style.left = Math.random() * 100 + "%";
+
+    const position = findPositionWithSpacing(questionMarks, size);
+    img.style.left = position.left + "%";
     img.style.top = `calc(${Math.random() * 100}% - ${size}px)`;
     img.style.zIndex = "-1";
     img.style.opacity = "0.3";
+
+    questionMarks.push({
+      x: position.left,
+      y: position.top,
+      size: size,
+    });
 
     document.body.appendChild(img);
   }
 }
 
-//addQuestionMarksToBg(50);
+function findPositionWithSpacing(existingMarks, size) {
+  const minSpacing = 10;
+  let attempts = 0;
+  const maxAttempts = 100;
+
+  while (attempts < maxAttempts) {
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+
+    // Check if this position has enough spacing from existing question marks
+    let hasEnoughSpacing = true;
+    for (let mark of existingMarks) {
+      const distance = Math.sqrt(
+        Math.pow(x - mark.x, 2) + Math.pow(y - mark.y, 2)
+      );
+      const requiredSpacing = minSpacing + (size + mark.size) / 20; // Adjust based on sizes
+
+      if (distance < requiredSpacing) {
+        hasEnoughSpacing = false;
+        break;
+      }
+    }
+
+    if (hasEnoughSpacing) {
+      return { left: x, top: y };
+    }
+
+    attempts++;
+  }
+
+  // If we can't find a good position after max attempts, just place it randomly
+  return {
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+  };
+}
+
+function clearBackground() {
+  const questionMarks = document.querySelectorAll("img");
+  questionMarks.forEach((img) => img.remove());
+}
+
+addQuestionMarksToBg(100);

@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+#jokeContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1rem solid black;
+    border-radius: 1rem;
+    height: 70vh;
+    width: 70vw;
+    background-color: #fff;
+
+}
 
 #getJokeBtn{
     position: absolute;
@@ -20,7 +32,7 @@
 
 #jokeSetup{
     font-size: 2rem;
-    width: 90%;
+    width: 70%;
     font-weight: bold;
     position: absolute;
     top: 30%;
@@ -35,7 +47,7 @@
     font-size: 2rem;
     font-weight: bold;
     position: absolute;
-    width: 90%;
+    width: 70%;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
